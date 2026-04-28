@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
-  Switch,
-  Link
+  Switch
 } from "react-router-dom";
 import Login from "./Login";
 import Playground from "./Playground";
@@ -15,18 +14,6 @@ function App() {
   return (
     <Router>
       <div className="main-container">
-
-        <h3>
-          {isAuthenticated
-            ? "Logged in, Now you can enter Playground"
-            : "You are not logged in"}
-        </h3>
-
-        <ul>
-          <li><Link to="/playground">PlayGround</Link></li>
-          <li><Link to="/login">Login</Link></li>
-        </ul>
-
         <Switch>
           <Route
             path="/login"
@@ -36,13 +23,13 @@ function App() {
           />
 
           <PrivateRoute
-            path="/playground"
+            exact
+            path="/"
             isAuthenticated={isAuthenticated}
             component={Playground}
             setIsAuthenticated={setIsAuthenticated}
           />
         </Switch>
-
       </div>
     </Router>
   );
